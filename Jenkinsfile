@@ -1,12 +1,12 @@
 pipeline {
     agent any
 
+    options {
+	timestamps()
+	ansiColor('xterm')
+    }
+
     stages {
-        stage('Clone') {
-            steps {
-                git branch: 'main', url: 'https://github.com/MrSesioM/hello-2048.git'
-            }
-        }
         stage('Build') {
             steps {
                 sh 'docker-compose build'
