@@ -1,6 +1,6 @@
 pipeline {
     agent any
-
+    
     options {
         timestamps()
         ansiColor('xterm')
@@ -17,5 +17,6 @@ pipeline {
                 sh 'docker-compose up -d'
             }
         }
+    
     }
 }
