@@ -7,9 +7,17 @@ pipeline {
     }
 
     stages {
-        stage('Build') {
+        stage('Docker-login') {
             steps {
-                sh 'docker-compose build'
+                withCredentials([string(credentialsId: 'docker-login', variable: 'CR_PAT')]) {
+                    sh 'echo $CR_PAT | docker login ghcr.io -u mrsesiom --password-stdin'
+                    
+                }
+            }
+        }
+	stage('Build') {
+            steps {
+                sh 'docker build -t ghcr.io/MrSesioM/2048:latest .'
             }
         }
         stage('Deploy') {
