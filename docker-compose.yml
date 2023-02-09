@@ -2,10 +2,10 @@ version: "3"
 services:
   hello-2048:
     build: .
-    image: ghcr.io/mrsesiom/hello-2048/2048:latest
+    image: ghcr.io/mrsesiom/2048:latest
     ports:
       - "8080:80"
 
   version:
     extends: hello-2048
-    image: ghcr.io/mrsesiom/hello-2048/2048:${VERSION}
+    image: ghcr.io/mrsesiom/2048:${VERSION}
