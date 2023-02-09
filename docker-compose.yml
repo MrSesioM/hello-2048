@@ -2,6 +2,6 @@ version: "3"
 services:
   hello-2048:
     build: .
-    image: httpd:alpine
+    image: ghcr.io/mrsesiom/2048:latest
     ports:
       - "8080:80"
