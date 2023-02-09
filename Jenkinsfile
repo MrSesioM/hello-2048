@@ -10,14 +10,9 @@ pipeline {
                 }
             }
         }
-	    stage('Build') {
-            steps {
-                sh 'docker build -t ghcr.io/mrsesiom/2048:latest .'
-            }
-        }
         stage('Push') {
             steps {
-                sh 'docker push ghcr.io/mrsesiom/2048:latest'
+                sh 'docker-compose push'
             }
         }
         stage('ssh-connection') {
