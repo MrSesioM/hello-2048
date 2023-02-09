@@ -1,10 +1,5 @@
 pipeline {
     agent any
-    
-    options {
-        timestamps()
-        ansiColor('xterm')
-    }
 
     stages {
         stage('Docker-login') {
@@ -15,16 +10,24 @@ pipeline {
                 }
             }
         }
-	stage('Build') {
+	    stage('Build') {
             steps {
-                sh 'docker build -t ghcr.io/MrSesioM/2048:latest .'
+                sh 'docker build -t ghcr.io/mrsesiom/2048:latest .'
             }
         }
-        stage('Deploy') {
+        stage('Push') {
             steps {
-                sh 'docker-compose up -d'
+                sh 'docker push ghcr.io/mrsesiom/2048:latest'
             }
         }
-    
+        stage('ssh-connection') {
+            steps {
+                sshagent(['d89380b3-eee1-48ad-b34f-5ab73318ad48']) {
+                    sh '''
+                    ssh -o "StrictHostKeyChecking no" ec2-user@52.211.227.27 "docker pull ghcr.io/mrsesiom/2048:latest && docker run -dt -p 80:80 ghcr.io/mrsesiom/2048"
+                    '''
+                }
+            }
+        }
     }
 }
