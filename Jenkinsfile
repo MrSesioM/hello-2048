@@ -5,7 +5,8 @@ pipeline {
 	stage('Create instance and install app'){
 		steps{
 			withAWS(credentials:'AWS Credentials'){
-				sh 'terraform apply'
+				sh 'cd ~/hello-terraform'
+				sh 'terraform apply -auto-approve'
 			}
 		}
 	}
