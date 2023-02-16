@@ -40,4 +40,4 @@
       shell: "wget https://github.com/MrSesioM/hello-2048/blob/main/docker-compose.yml"
 
     - name: Building and deploying 2048's image app
-      shell: "docker-compose build && docker-compose run -d"
+      shell: "docker-compose pull && docker-compose up -d"
