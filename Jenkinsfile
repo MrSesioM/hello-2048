@@ -4,7 +4,7 @@ pipeline {
     stages{
 	stage('Create instance and install app'){
 		step{
-			withCredentials([<object of type com.cloudbees.jenkins.plugins.awscredentials.AmazonWebServicesCredentialsBinding>]) {
+			withAWS(credentials:'AWS Credentials'){
 				sh 'terraform apply'
 			}
 		}
