@@ -3,7 +3,7 @@ pipeline {
 
     stages{
 	stage('Create instance and install app'){
-		step{
+		steps{
 			withAWS(credentials:'AWS Credentials'){
 				sh 'terraform apply'
 			}
