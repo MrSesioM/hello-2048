@@ -19,7 +19,7 @@ pipeline {
             }
         }
         
-        stage('Builder and Push images') {
+        stage('Building and Pushing images') {
             steps {
 		    
                 sh 'VERSION=1.0.${BUILD_NUMBER} docker-compose build'
